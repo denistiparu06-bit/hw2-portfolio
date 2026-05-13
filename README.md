@@ -16,7 +16,7 @@ This repository contains the implementation for Homework 2 (HW2). The project de
 
 ## Deployment
 The live version of this project is hosted via GitHub Pages:
-**[Insert Your GitHub Pages Link Here]**
+**(https://denistiparu06-bit.github.io/hw2-portfolio/)**
 
 ## Technologies Used
 * HTML5 (Semantic markup)
