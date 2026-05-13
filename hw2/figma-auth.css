@@ -1,0 +1,181 @@
+/*
+  figma-auth.css
+  Exported CSS from Figma — UVT Authentication Interface
+  Denis Tiparu Mario Mihai — Web Design 2025-2026
+
+  Screenshot saved at: assets/figma-auth-screenshot.png
+  Background image:    assets/fundalLOGARE.png
+  UVT Logo:            assets/LogoUVT.png
+*/
+
+/* ===== Design Tokens (Figma Styles) ===== */
+:root {
+  /* Text styles */
+  --auth-font-heading: 'Sora', sans-serif;
+  --auth-font-body: 'Nunito', sans-serif;
+  --auth-fs-title: 1.75rem;
+  --auth-fs-body: 0.95rem;
+
+  /* Color styles */
+  --auth-clr-brand: #1a2e6e;       /* UVT dark navy */
+  --auth-clr-accent: #1e88e5;      /* UVT accent blue */
+  --auth-clr-accent-dark: #1565c0;
+  --auth-clr-bg-panel: #ffffff;
+  --auth-clr-text: #1f2937;
+  --auth-clr-muted: #6b7280;
+  --auth-clr-border: #d1d5db;
+
+  /* Spacing scale (8px base) */
+  --auth-space-1: 8px;
+  --auth-space-2: 16px;
+  --auth-space-3: 24px;
+  --auth-space-4: 32px;
+  --auth-space-5: 48px;
+}
+
+/* ===== Main Frame — Two-panel layout ===== */
+.auth-frame {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 100vh;
+  font-family: var(--auth-font-body);
+}
+
+/* Left panel — UVT branding with background image */
+.auth-visual {
+  background-image: url('assets/fundalLOGARE.png');
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--auth-space-5);
+  color: #ffffff;
+  position: relative;
+}
+
+.auth-visual-logo {
+  width: 140px;
+  margin-bottom: var(--auth-space-3);
+  /* Logo is black/white — invert to make white on dark background */
+  filter: brightness(0) invert(1);
+}
+
+.auth-visual-title {
+  font-family: var(--auth-font-heading);
+  font-size: 1.4rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: var(--auth-space-1);
+}
+
+.auth-visual-sub {
+  font-size: var(--auth-fs-body);
+  color: rgba(255, 255, 255, 0.70);
+  text-align: center;
+  max-width: 280px;
+}
+
+/* Right panel — login form */
+.auth-panel {
+  background: var(--auth-clr-bg-panel);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--auth-space-5) var(--auth-space-4);
+}
+
+.auth-panel-title {
+  font-family: var(--auth-font-heading);
+  font-size: var(--auth-fs-title);
+  font-weight: 700;
+  color: var(--auth-clr-text);
+  margin-bottom: var(--auth-space-1);
+}
+
+.auth-panel-sub {
+  font-size: var(--auth-fs-body);
+  color: var(--auth-clr-muted);
+  margin-bottom: var(--auth-space-4);
+}
+
+.auth-form {
+  width: 100%;
+  max-width: 360px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--auth-space-2);
+}
+
+.auth-field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--auth-space-1);
+}
+
+.auth-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--auth-clr-text);
+}
+
+.auth-input {
+  padding: 10px var(--auth-space-2);
+  border: 2px solid var(--auth-clr-border);
+  border-radius: 8px;
+  font-family: var(--auth-font-body);
+  font-size: var(--auth-fs-body);
+  color: var(--auth-clr-text);
+  transition: border-color 0.2s;
+}
+
+.auth-input:focus {
+  outline: none;
+  border-color: var(--auth-clr-accent);
+  box-shadow: 0 0 0 3px rgba(30, 136, 229, 0.15);
+}
+
+/* ===== Button Component (reusable — used in 2 places) ===== */
+.auth-btn {
+  padding: 11px var(--auth-space-3);
+  background: var(--auth-clr-accent);
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  font-family: var(--auth-font-body);
+  font-size: var(--auth-fs-body);
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s;
+  text-align: center;
+  width: 100%;
+}
+
+.auth-btn:hover { background: var(--auth-clr-accent-dark); }
+
+/* Secondary button variant — reuse of same component */
+.auth-btn--secondary {
+  background: transparent;
+  color: var(--auth-clr-accent);
+  border: 2px solid var(--auth-clr-accent);
+}
+
+.auth-btn--secondary:hover {
+  background: rgba(30, 136, 229, 0.06);
+}
+
+.auth-divider {
+  text-align: center;
+  color: var(--auth-clr-muted);
+  font-size: 0.85rem;
+}
+
+.auth-link {
+  color: var(--auth-clr-accent);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.auth-link:hover { text-decoration: underline; }

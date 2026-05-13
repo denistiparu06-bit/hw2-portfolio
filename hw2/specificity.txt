@@ -1,0 +1,117 @@
+CSS Specificity Exercise — Denis Tiparu Mario Mihai
+Lab 4 - Exercise 1
+================================================
+
+QUESTION 1: Which CSS properties does each paragraph receive and where does each come from?
+
+Specificity values used in this file:
+  p              → (0, 0, 1)  — element selector
+  .info          → (0, 1, 0)  — class selector
+  #warning       → (1, 0, 0)  — id selector
+  #warning.info  → (1, 1, 0)  — id + class selector (highest)
+
+--------------------------------------------------
+Paragraph A  <p>Paragraph A</p>
+--------------------------------------------------
+Matches only the element selector "p".
+Properties received:
+  color: gray              — from p (element selector)
+  font-size: 1rem          — from p (element selector)
+  font-family: Georgia     — from p (element selector)
+  line-height: 1.4         — from p (element selector)
+  padding: 4px 0           — from p (element selector)
+
+--------------------------------------------------
+Paragraph B  <p class="info">Paragraph B</p>
+--------------------------------------------------
+Matches both "p" and ".info". Class selector wins over element selector for conflicting properties.
+Properties received:
+  color: steelblue         — from .info (beats p)
+  font-size: 1.25rem       — from .info (beats p)
+  font-family: Arial       — from .info (beats p)
+  background-color: #e8f4fd — from .info
+  padding: 8px 14px        — from .info (beats p)
+  border-left: 5px solid   — from .info
+  line-height: 1.4         — from p (only p defines this)
+
+--------------------------------------------------
+Paragraph C  <p id="warning">Paragraph C</p>
+--------------------------------------------------
+Matches "p" and "#warning". ID selector wins for all conflicting properties.
+Properties received:
+  color: darkred           — from #warning (beats p)
+  font-size: 0.8rem        — from #warning (beats p)
+  font-family: Courier New — from #warning (beats p)
+  font-style: italic       — from #warning
+  text-transform: uppercase — from #warning
+  letter-spacing: 0.15em   — from #warning
+  border: 2px dashed darkred — from #warning
+  padding: 10px            — from #warning (beats p)
+  background-color: #fff0f0 — from #warning
+  line-height: 1.4         — from p (only p defines this)
+
+--------------------------------------------------
+Paragraph D  <p class="info" id="warning">Paragraph D</p>
+--------------------------------------------------
+Matches all four rules: p, .info, #warning, and #warning.info.
+#warning.info has the highest specificity (1,1,0) and wins all conflicts it defines.
+
+Properties received:
+  color: darkorange        — from #warning.info (1,1,0) — highest specificity
+  background-color: #fff7e0 — from #warning.info
+  border: 2px solid orange — from #warning.info
+  font-size: 1.1rem        — from #warning.info
+  font-style: normal       — from #warning.info (overrides italic from #warning)
+  letter-spacing: 0.03em   — from #warning.info (overrides 0.15em from #warning)
+  text-transform: uppercase — from #warning (only #warning defines this)
+  padding: 10px            — from #warning (1,0,0 beats .info 0,1,0)
+  font-family: Courier New — from #warning (see Q2 below)
+  line-height: 1.4         — from p (only p defines this)
+
+================================================
+QUESTION 2: Paragraph D — which color wins and why? What about font-family?
+
+COLOR:
+  Four rules define color for Paragraph D:
+    p              → gray        (0,0,1)
+    .info          → steelblue   (0,1,0)
+    #warning       → darkred     (1,0,0)
+    #warning.info  → darkorange  (1,1,0)  ← WINNER
+
+  The browser uses darkorange from #warning.info because it has the
+  highest specificity score (1,1,0). When specificity ties, the rule
+  that appears LAST in the stylesheet wins — but here there is no tie.
+
+FONT-FAMILY:
+  Three rules define font-family for Paragraph D:
+    p              → Georgia, serif           (0,0,1)
+    .info          → Arial, sans-serif        (0,1,0)
+    #warning       → Courier New, monospace   (1,0,0)  ← WINNER
+    (#warning.info does NOT define font-family)
+
+  The browser uses Courier New from #warning because it has the
+  highest specificity among rules that define font-family (1,0,0).
+  Even though #warning.info has higher overall specificity, it does
+  not set font-family, so it cannot override #warning for that property.
+
+================================================
+QUESTION 3: External vs internal CSS for h1 — what happens?
+
+Step 1 — External CSS only (style.css):
+  h1 { color: navy; font-style: normal; padding: 10px; }
+  Result: "title1" appears in navy blue with 10px padding.
+
+Step 2 — Add internal CSS rule inside <style> in <head>:
+  h1 { color: steelblue; font-style: italic; }
+  Result: "title1" changes to steelblue and becomes italic.
+
+Explanation:
+  Both the external stylesheet and the internal <style> block target
+  h1 with an element selector — same specificity (0,0,1).
+  When specificity is equal, the CASCADE ORDER decides: the rule that
+  appears LAST in the document wins.
+  The <style> block is written AFTER the <link> to style.css in the
+  <head>, so the internal rule is processed later and overrides the
+  external one for the conflicting properties (color and font-style).
+  The padding: 10px from style.css is NOT redefined in the internal
+  rule, so it is still applied from the external stylesheet.
