@@ -1,0 +1,7 @@
+/* style.css — external stylesheet for specificity.html (Lab 4 Exercise 1) */
+
+h1 {
+    color: navy;
+    font-style: normal;
+    padding: 10px;
+}

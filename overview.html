@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Overview — Denis Tiparu</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* ===== OVERVIEW PAGE LAYOUT (CSS Grid + Flexbox + Media Query) ===== */
+
+    /* Main layout: sidebar + content — CSS Grid */
+    .overview-layout {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      grid-template-rows: auto;
+      gap: 2rem;
+      padding: 2rem 0;
+    }
+
+    /* Sidebar uses Flexbox internally */
+    .profile-sidebar {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      background: #ffffff;
+      border-radius: 12px;
+      padding: 2rem 1.5rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      border: 1px solid #d1d5db;
+      align-self: start;
+    }
+    .profile-sidebar img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      border: 3px solid #1e88e5;
+    }
+    .profile-sidebar h3 { text-align: center; font-size: 1.1rem; }
+    .profile-sidebar p { text-align: center; font-size: 0.9rem; color: #6b7280; margin: 0; }
+    .contact-detail { display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem; }
+    .contact-detail a { color: #1e88e5; word-break: break-all; }
+
+    /* Content area */
+    .overview-content { display: flex; flex-direction: column; gap: 2rem; }
+
+    /* Skills section uses Flexbox */
+    .skills-flex { display: flex; flex-wrap: wrap; gap: 0.5rem; list-style: none; }
+    .skills-flex li {
+      background: #0d1b2a;
+      color: #fff;
+      padding: 0.3rem 0.9rem;
+      border-radius: 999px;
+      font-size: 0.85rem;
+    }
+
+    /* Cards grid — CSS Grid */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+    }
+    .proj-card {
+      background: #ffffff;
+      border-radius: 10px;
+      padding: 1.25rem;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+      border: 1px solid #d1d5db;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .proj-card:hover { transform: translateY(-3px); box-shadow: 0 6px 18px rgba(0,0,0,0.1); }
+    .proj-card h4 { font-family: 'Sora', sans-serif; font-size: 1rem; margin-bottom: 0.4rem; color: #0d1b2a; }
+    .proj-card p { font-size: 0.875rem; color: #6b7280; margin: 0; }
+
+    /* Featured card — styled differently (at least one card must differ) */
+    .proj-card.featured {
+      background: linear-gradient(135deg, #0d1b2a, #1a3a5c);
+      color: #fff;
+      border-color: transparent;
+    }
+    .proj-card.featured h4 { color: #fff; }
+    .proj-card.featured p { color: rgba(255,255,255,0.75); }
+
+    /* ===== MEDIA QUERY — single column on small screens ===== */
+    @media (max-width: 720px) {
+      .overview-layout {
+        grid-template-columns: 1fr;
+      }
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+      .profile-sidebar {
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: flex-start;
+        gap: 1rem;
+      }
+      .profile-sidebar img { width: 72px; height: 72px; }
+      .profile-sidebar h3, .profile-sidebar p { text-align: left; }
+    }
+  </style>
+</head>
+<body>
+
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <header>
+    <div class="container">
+      <h1>Denis Tiparu</h1>
+      <p class="tagline">Computer Science Student · UVT Timișoara</p>
+    </div>
+    <nav aria-label="Main navigation">
+      <div class="container">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="data.html">Projects</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="card.html">Card</a></li>
+          <li><a href="overview.html">Overview</a></li>
+          <li><a href="chatbot.html">Chatbot</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main-content">
+    <div class="page-header">
+      <div class="container">
+        <h2>Portfolio Overview</h2>
+        <p>Profile, skills, projects, and contact — all in one responsive page</p>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="overview-layout">
+
+        <!-- Sidebar: profile + contact (Flexbox) -->
+        <aside class="profile-sidebar">
+          <img
+            src="https://placehold.co/100x100/0d1b2a/ffffff?text=DT"
+            alt="Avatar placeholder for Denis Tiparu"
+            width="100"
+            height="100"
+          >
+          <h3>Denis Tiparu Mario Mihai</h3>
+          <p>Computer Science · Year 1 · UVT Timișoara</p>
+          <hr style="width:100%; border:none; border-top:1px solid #e5e7eb;">
+          <div class="contact-detail">
+            <span>✉</span>
+            <a href="mailto:denis.tiparu06@e-uvt.ro">denis.tiparu06@e-uvt.ro</a>
+          </div>
+          <div class="contact-detail">
+            <span>⭐</span>
+            <a href="https://github.com/denistiparu06-bit" target="_blank" rel="noopener noreferrer">github.com/denistiparu06-bit</a>
+          </div>
+        </aside>
+
+        <!-- Main content area -->
+        <div class="overview-content">
+
+          <!-- Short description -->
+          <section>
+            <h3>About</h3>
+            <p>First-year Computer Science student at UVT, building skills in web development, algorithms, and software design. Passionate about creating clean, accessible, and user-friendly interfaces.</p>
+          </section>
+
+          <!-- Skills (Flexbox) -->
+          <section>
+            <h3>Skills</h3>
+            <ul class="skills-flex">
+              <li>HTML5</li>
+              <li>CSS3</li>
+              <li>JavaScript</li>
+              <li>Git &amp; GitHub</li>
+              <li>Responsive Design</li>
+              <li>Figma</li>
+              <li>Python</li>
+              <li>C / C++</li>
+            </ul>
+          </section>
+
+          <!-- Projects — CSS Grid with 4+ cards, one featured -->
+          <section>
+            <h3>Projects</h3>
+            <div class="projects-grid">
+
+              <article class="proj-card featured">
+                <h4>Portfolio Website (HW1 + HW2)</h4>
+                <p>Full multi-page portfolio built with HTML5, CSS3, and JavaScript.</p>
+              </article>
+
+              <article class="proj-card">
+                <h4>Chatbot</h4>
+                <p>JS chatbot with question bank and dynamic DOM updates.</p>
+              </article>
+
+              <article class="proj-card">
+                <h4>Responsive Overview</h4>
+                <p>This very page — CSS Grid + Flexbox + media queries.</p>
+              </article>
+
+              <article class="proj-card">
+                <h4>Figma Auth UI</h4>
+                <p>Two-panel login interface with reusable design components.</p>
+              </article>
+
+            </div>
+          </section>
+
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>Denis Tiparu Mario Mihai · Web Design 2025–2026 · UVT Timișoara</p>
+  </footer>
+
+</body>
+</html>
